@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: web-app-deployment
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: web-app
+template:
+metadata:
+labels:
+app: web-app
+spec:
+containers:
+- name: web-app-container
+image: <image_name>:<version>
+ports:
+- containerPort: 80
+env:
+- name: AZURE_STORAGE_ACCOUNT
+value: <azure_storage_account_name>
+- name: AZURE_STORAGE_ACCESS_KEY
+value: <azure_storage_access_key>
+volumeMounts:
+- name: web-app-config
+mountPath: /app/config
+volumes:
+- name: web-app-config
+configMap:
+name: web-app-config-map
+apiVersion: v1
+kind: Service
+metadata:
+name: web-app-service
+spec:
+selector:
+app: web-app
+ports:
+
+name: http
+port: 80
+targetPort: 80
+type: LoadBalancer
+apiVersion: v1
+kind: ConfigMap
+metadata:
+name: web-app-config-map
+data:
+config.json: |
+{
+"setting1": "value1",
+"setting2": "value2"
+}
