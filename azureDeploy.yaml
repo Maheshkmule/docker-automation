@@ -29,20 +29,24 @@ volumes:
 - name: web-app-config
 configMap:
 name: web-app-config-map
+
+
 apiVersion: v1
-kind: Service
-metadata:
-name: web-app-service
+ kind: Service
+  metadata:
+   name: web-app-service
 spec:
 selector:
-app: web-app
+  app: web-app
 ports:
 
 name: http
 port: 80
 targetPort: 80
 type: LoadBalancer
-apiVersion: v1
+ 
+ 
+ apiVersion: v1
 kind: ConfigMap
 metadata:
 name: web-app-config-map
