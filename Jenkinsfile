@@ -15,7 +15,7 @@ pipeline{
                 }
             }
         }
-        stage('Push image to Hub'){
+         stage('Push image to Hub'){
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
@@ -25,7 +25,7 @@ pipeline{
                    bat 'docker push maheshmule/docker-automation'
                 }
             }
-    }
- }
-}    
-    
+         }
+      }
+   
+}
