@@ -19,7 +19,7 @@ pipeline{
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   bat 'docker login -u maheshmule -p ${dockerhub}'
+                   bat 'docker login -u maheshmule -p ${dockerhubpwd}'
 
 }
                    bat 'docker push maheshmule/docker-automation'
