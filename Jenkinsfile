@@ -19,7 +19,7 @@ pipeline{
             steps{
                 script{
                    
-                   bat 'docker login -u maheshmule -p 8861347877'
+                   bat 'docker login -u maheshmule -p Haridas#9637'
 
                    bat 'docker push maheshmule/docker-automation '
                 }
