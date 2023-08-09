@@ -10,9 +10,9 @@ name: Github Action CICD
 
 on:
   push:
-    branches: [ "Github-action" ]
+    branches: [ "docker-name" ]
   pull_request:
-    branches: [ "Github-action" ]
+    branches: [ "docker-name" ]
 
 jobs:
   build:
