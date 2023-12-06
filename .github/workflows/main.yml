@@ -10,25 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+     - name: Checkout Repository
+       uses: actions/checkout@v2
+     - name: Set up JDK 17
+       uses: actions/setup-java@v3
+       with:
+         java-version: '17'
+         distribution: 'temurin'
+         cache: maven
+     - name: Build with Maven
+       run: mvn -B package --file ./pom.xml
 
-    - name: Set up JDK
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-version: '11'
-
-    - name: Build Maven
-      run: |
-        ./mvnw clean install  # Adjust the build command based on your Maven wrapper script
-
-    - name: Build Docker image
-      run: |
+     - name: Build Docker image
+       run: |
         docker build -t maheshmule/docker-automation .
 
-    - name: Push image to Hub
-      run: |
+     - name: Push image to Hub
+       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push maheshmule/docker-automation
 
